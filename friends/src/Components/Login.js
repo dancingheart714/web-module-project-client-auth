@@ -1,35 +1,33 @@
 import React from 'react';
 import axios from 'axios';
-import Loader from 'react-loader-spinner';
 
 class Login extends React.Component {
   state = {
     credentials: {
       username: '',
       password: '',
-      isLoading: false,
     },
   };
 
-  handleChange = (e) => {
+  handleChange = (event) => {
     this.setState({
       credentials: {
         ...this.state.credentials,
-        [e.target.name]: e.target.value,
+        [event.target.name]: event.target.value,
       },
     });
   };
 
-  login = (e) => {
-    e.preventDefault();
+  login = (event) => {
+    event.preventDefault();
     axios
       .post('/api/login', this.state.credentials)
-      .then((res) => {
-        console.log(res);
-        window.localStorage.setItem('token', res.data.payload);
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem('token', response.data.payload);
         this.props.history.push('/protected');
       })
-      .catch((err) => console.log(err));
+      .catch((error) => console.log(error));
   };
 
   render() {
@@ -39,19 +37,18 @@ class Login extends React.Component {
           <input
             type="text"
             name="username"
+            placeholder="Please enter a username"
             value={this.state.credentials.username}
             onChange={this.handleChange}
           />
           <input
             type="password"
             name="password"
+            placeholder="Please enter a password"
             value={this.state.credentials.password}
             onChange={this.handleChange}
           />
           <button>Log in</button>
-          {this.state.credentials.isLoading === true && (
-            <Loader type="Hearts" color="#00BFFF" height={80} width={80} />
-          )}
         </form>
       </div>
     );
