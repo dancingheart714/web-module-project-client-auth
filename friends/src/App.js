@@ -1,10 +1,10 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import { PrivateRoute } from './components/PrivateRoute';
-import Login from './components/Login';
-import FriendsList from './components/FriendsList';
-import NewFriend from './components/NewFriend';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { PrivateRoute } from './Components/PrivateRoute';
+import Login from './Components/Login';
+import FriendsList from './Components/FriendsList';
+import NewFriend from './Components/NewFriend';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
             className="nav"
             variant="dark"
             expand="lg"
-            style={{ backgroundColor: '#F64C3C' }}
+            style={{ backgroundColor: 'lightblue' }}
           >
             <Navbar.Brand className="brand" style={{ color: 'black' }}>
               Friends!

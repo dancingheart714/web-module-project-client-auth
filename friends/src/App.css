@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.brand {
+  font-size: 4.5rem;
+  font-weight: bold;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 2rem;
+  margin: 1rem;
+  text-decoration: none;
+  color: black;
+}
