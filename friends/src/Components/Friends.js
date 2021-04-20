@@ -3,9 +3,9 @@ import React from 'react';
 import { axiosWithAuth } from '../Utils/axiosWithAuth';
 import { Container } from 'reactstrap';
 
-class FriendsList extends React.Component {
+class Friends extends React.Component {
   state = {
-    friendsList: [],
+    friends: [],
     initialState: {
       name: '',
       age: '',
@@ -23,7 +23,7 @@ class FriendsList extends React.Component {
       .then((res) => {
         console.log(res);
         this.setState({
-          friendsList: res.data,
+          friends: res.data,
         });
       })
       .catch((err) => console.log(err));
@@ -38,7 +38,7 @@ class FriendsList extends React.Component {
     });
   };
 
-  addFriend = (event) => {
+  newFriend = (event) => {
     event.preventDefault();
     axiosWithAuth()
       .post('/api/friends', {
@@ -48,7 +48,9 @@ class FriendsList extends React.Component {
       })
       .then((res) => {
         console.log(res);
+
         this.setState({
+          friends: res.data,
           initialState: {
             name: '',
             age: '',
@@ -58,25 +60,23 @@ class FriendsList extends React.Component {
       });
   };
 
-  formatData = () => {
-    const formattedData = [];
-    this.state.friendsList.forEach((friend) => {
-      formattedData.push({
-        name: friend.name,
-        age: friend.age,
-        email: friend.email,
-      });
-    });
-    return formattedData;
-  };
-
   render() {
-    const friends = this.formatData();
-
     return (
       <div>
-        <Container style={{ backgroundColor: lightgreen }}>
-          <form onSubmit={this.addFriend}>
+        <div>
+          {this.state.friends.map((person) => {
+            return (
+              <div>
+                <h3>{person.name}</h3>
+                <h4>{person.age}</h4>
+                <h4>{person.email}</h4>
+                <br></br>
+              </div>
+            );
+          })}
+        </div>
+        <Container>
+          <form onSubmit={this.newFriend}>
             <input
               type="text"
               name="name"
@@ -85,7 +85,7 @@ class FriendsList extends React.Component {
               placeholder="name"
             />
             <input
-              type="text"
+              type="number"
               name="age"
               value={this.state.initialState.age}
               onChange={this.handleChange}
@@ -98,20 +98,11 @@ class FriendsList extends React.Component {
               onChange={this.handleChange}
               placeholder="email"
             />
-            <button>Add Friend</button>
+            <button>Add A New Friend</button>
           </form>
-
-          {this.state.friends.map((person) => {
-            <div>
-              <h3>{person.name}</h3>
-              <h4>{person.age}</h4>
-              <h4>{person.email}</h4>
-              <br></br>
-            </div>;
-          })}
         </Container>
       </div>
     );
   }
 }
-export default FriendsList;
+export default Friends;

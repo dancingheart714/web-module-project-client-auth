@@ -21,10 +21,11 @@ class Login extends React.Component {
   login = (event) => {
     event.preventDefault();
     axios
-      .post('/api/login', this.state.credentials)
+      .post('http://localhost:5000/api/login', this.state.credentials)
       .then((response) => {
         console.log(response);
         localStorage.setItem('token', response.data.payload);
+
         this.props.history.push('/protected');
       })
       .catch((error) => console.log(error));
@@ -37,14 +38,14 @@ class Login extends React.Component {
           <input
             type="text"
             name="username"
-            placeholder="Please enter a username"
+            placeholder="Enter a username"
             value={this.state.credentials.username}
             onChange={this.handleChange}
           />
           <input
             type="password"
             name="password"
-            placeholder="Please enter a password"
+            placeholder="Enter a password"
             value={this.state.credentials.password}
             onChange={this.handleChange}
           />
