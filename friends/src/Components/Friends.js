@@ -62,7 +62,7 @@ class Friends extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="new-friend">
         <div>
           {this.state.friends.map((person) => {
             return (

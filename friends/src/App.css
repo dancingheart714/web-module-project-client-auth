@@ -15,8 +15,11 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
-.App-header {
+.logo {
+  padding: 0%;
+  margin-top: 0%;
+}
+.App {
   background-color: #749df0;
   min-height: 100vh;
   display: flex;
@@ -40,6 +43,13 @@
   }
 }
 
-a {
+.new-friend {
+  background-color: lightgreen;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
   color: darkblue;
 }

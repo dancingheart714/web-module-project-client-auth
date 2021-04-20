@@ -10,6 +10,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <h1>Welcome!</h1>
         <Switch>
           <PrivateRoute exact path="/protected" component={Friends} />
           <Route render={(props) => <Login {...props} />} />
